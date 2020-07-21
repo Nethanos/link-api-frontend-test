@@ -28,4 +28,8 @@ export class MoviesService  {
      return this.http.get<Movie>(`${this.MY_API_URL}/${movieId}`)
  }
 
+ getMovieByTitle(movieTitle: string): Observable<Movie[]> {
+   return this.http.get<Movie[]>(this.MY_API_URL, {params: {searchTitle: movieTitle}})
+ }
+
 }
