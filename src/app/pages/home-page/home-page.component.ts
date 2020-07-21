@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Profile } from '../../models/profile';
 import { ProfileService } from '../../services/profile.service';
 import {GenreOptionList} from '../../helpers/genre-option-list';
+import { LocalStorageMiddleware } from '../../middlewares/local-storage-middleware';
+import { Movie } from '../../models/movie';
 
 
 
@@ -14,7 +16,7 @@ import {GenreOptionList} from '../../helpers/genre-option-list';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private router: Router, private profileService: ProfileService) { }
+  constructor(private router: Router, private profileService: ProfileService, private localStorageMdw: LocalStorageMiddleware) { }
 
 
   profile: Profile;
@@ -32,12 +34,20 @@ export class HomePageComponent implements OnInit {
   })
 
 
-  saveUser(){
+  saveUser(): void {
     this.profile = {...this.userForm.value};
 
     this.profileService.saveProfile(this.profile).subscribe((response) => {
-      console.log("Perfil criado");
-      this.router.navigate(['/filmes']);
+
+      if(response._id) {
+        this.profile = response;
+        this.profile.favoriteMovieList = new Array<Movie>();
+        this.localStorageMdw.setProfile(this.profile);
+        console.log("Perfil criado");
+        this.router.navigate(['/filmes']);
+      }
+
+     
 
 
     })

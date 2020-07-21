@@ -12,6 +12,12 @@
             <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">{{movie.title}}</h5>
+
+                  <div *ngIf="!isFavorite" (click)="addToFavorites()" class="col-sm-4 favorite-label">Add to Favorites</div>
+
+                  <div *ngIf="isFavorite" (click)="removeFromFavorites()" class="col-sm-4 favorite-label">Favorited</div>
+
+
                   <h6 class="card-subtitle mb-2 text-muted">{{movie.year}}  {{movie.runtime}} {{movie.rated}}</h6>
                   <p class="card-text">{{movie.plot}}</p>
                   <a href="#" class="card-link">Cast</a>

@@ -7,3 +7,11 @@
 .movie-poster {
     padding: 0px;
 }
+
+.container { position: relative; }
+.container img { display: block; }
+.container .img-favorite-icon { position: absolute; bottom:210px; right: 15px;
+    color: white;
+    font-size: 30px;
+    text-shadow: 2px 2px black;
+ }

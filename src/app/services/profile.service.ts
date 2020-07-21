@@ -15,8 +15,8 @@ export class ProfileService  {
   }
 
 
-  saveProfile(profile: Profile): Observable<string> {
-      return this.http.post<string>(this.MY_API_URL, profile);
+  saveProfile(profile: Profile): Observable<Profile> {
+      return this.http.post<Profile>(this.MY_API_URL, profile);
   }
 
 

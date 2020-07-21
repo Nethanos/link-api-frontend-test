@@ -2,6 +2,9 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { MoviesService } from '../../../services/movies.service';
 import { Movie } from '../../../models/movie';
 import { finalize } from 'rxjs/operators';
+import { LocalStorageMiddleware } from '../../../middlewares/local-storage-middleware';
+import { FilterTypeEnum } from '../../../helpers/filter-type-enum';
+import { IfStmt } from '@angular/compiler';
 
 
 @Component({
@@ -11,7 +14,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class MoviesComponent implements OnInit, AfterViewInit {
 
-  constructor(private movieService: MoviesService) { }
+  constructor(private movieService: MoviesService, private localStorageMdw: LocalStorageMiddleware) { }
 
   loadingMovies = true;
 
@@ -21,20 +24,27 @@ export class MoviesComponent implements OnInit, AfterViewInit {
 
   hasMovies = true;
 
+  actualFilterType = FilterTypeEnum.FAVORITES;
+
   ngOnInit(): void {
   
   }
 
   ngAfterViewInit(): void {
-    this.movieService.getMyMovies().pipe(finalize(() => this.loadingMovies = false) ).subscribe(response => {
-     if(response.length >= 1) this.movieList = response;
-
-     this.hasMovies = true;
-      
-    })
+    this.listAllMovies();
   }
 
-  searchMovie(){
+
+  listAllMovies(): void {
+    this.movieService.getMyMovies().pipe(finalize(() => this.loadingMovies = false) ).subscribe(response => {
+      if(response.length >= 1) this.movieList = response;
+ 
+      this.hasMovies = true;
+       
+     })
+  }
+
+  searchMovie(): void {
 
    this.movieService.getMovieByTitle(this.searchQuery).subscribe(response => {
 
@@ -44,9 +54,34 @@ export class MoviesComponent implements OnInit, AfterViewInit {
      }else {
        this.hasMovies = false;
      }
-
-
    });
+  }
+
+
+  async changeFavoritesFilter() {
+
+    if(this.actualFilterType === FilterTypeEnum.DEFAULT){
+   
+
+      const response =  await  this.movieService.getMyMovies().toPromise();
+
+      this.movieList = response;
+ 
+       this.actualFilterType = FilterTypeEnum.FAVORITES;
+       return; 
+      
+    }if(this.actualFilterType === FilterTypeEnum.FAVORITES) {
+    
+      const profile = this.localStorageMdw.getProfile();
+
+      this.movieList = profile.favoriteMovieList;
+
+      this.actualFilterType = FilterTypeEnum.DEFAULT;
+
+      return;
+    }
+
+ 
   }
 
 }
