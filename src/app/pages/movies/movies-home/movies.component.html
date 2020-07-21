@@ -14,7 +14,7 @@
 
     <div>
         <div class="form-group has-feedback">
-            <input type="text" class="form-control" placeholder="Busca" />
+            <input  [(ngModel)]="searchQuery" (keyup)="searchMovie()" type="text" class="form-control" placeholder="Busca" />
             <i class="glyphicon glyphicon-user form-control-feedback"></i>
         </div>
     </div>
@@ -24,9 +24,17 @@
 
         <p *ngIf="loadingMovies">Carregando...</p>
 
-        <div *ngFor="let movie of movieList">
-            <app-movie-showcase [movie]="movie"></app-movie-showcase>
+        <div class="row" *ngIf="hasMovies">
+            <div  *ngFor="let movie of movieList">
+                <app-movie-showcase [movie]="movie"></app-movie-showcase>
+            </div>
         </div>
+          
+            <div class="col" *ngIf="!hasMovies">
+                <img  class="movie-not-found" src="assets/img/no-movie.svg">
+            </div>
+       
+      
 
     </div>
 
