@@ -1,0 +1,30 @@
+<a [routerLink]="'/filmes'"> return</a>
+
+<div class="container-fluid" *ngIf="!loadingMovie">
+
+    <div class="row">
+        Header
+    </div>
+    
+    <div class="row">
+    
+        <div class="col-sm">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{movie.title}}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{movie.year}}  {{movie.runtime}} {{movie.rated}}</h6>
+                  <p class="card-text">{{movie.plot}}</p>
+                  <a href="#" class="card-link">Cast</a>
+                  <p *ngFor="let actor of movieCast">{{actor}}</p>
+                  <a href="#" class="card-link">Genre</a>
+                  <p *ngFor="let genre of movieGenre">{{genre}}</p>
+                  <a>Director</a>
+                  <p>{{movie.director}}</p>
+                </div>
+              </div>
+        </div>
+        <div class="col-sm">
+            <img  [src]="movie.poster">
+        </div>
+    </div>
+</div>
