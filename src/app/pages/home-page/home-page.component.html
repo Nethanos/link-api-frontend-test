@@ -12,7 +12,7 @@
                 <div class="form-group">
                     <label>
                         Nome
-                        <input type="text" formControlName="name">
+                        <input type="text" formControlName="name" placeholder="John Doe">
                     </label>
                 </div>
 
@@ -20,22 +20,26 @@
                 <div class="form-group">
                     <label>
                         Idade
-                        <input type="text" formControlName="age">
+                        <input type="text" formControlName="age" placeholder="Only numbers">
                     </label>
                 </div>
 
                 <div class="form-group">
                     <label>
                         Filme Favorito
-                        <input type="text" formControlName="favoriteMovie">
+                        <input type="text" formControlName="favoriteMovie" placeholder="Choose your favorite movie">
                     </label>
                 </div>
 
                 <div class="form-group">
                     <label>
                         Gênero Favorito
-                        <input type="text" formControlName="favoriteGenre">
+                        <select formControlName="favoriteGenre" class="custom-select" >
+                            <option [ngValue]="null" selected disabled>Choose your favorite genre</option>
+                            <option *ngFor="let option of genreList" [value]="option"> {{option}}</option>
+                          </select>
                     </label>
+                   
 
                 </div>
                 <button>Cancelar</button> <button  [disabled]="!userForm.valid" type="submit">Save profile</button>
