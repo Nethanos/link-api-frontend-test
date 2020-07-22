@@ -36,6 +36,7 @@ export class MovieViewComponent implements OnInit {
       this.movie = foundMovie;
       this.loadingMovie = !this.loadingMovie;
       this.handleFavoriteState();
+      this.handleMovieData(this.movie);
     }
 
 
