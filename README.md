@@ -2,6 +2,12 @@
 
 Projeto idealizado como teste técnico para a vaga de Desenvolvedor Front-end da Link Api.
 
+
+## Para rodar localmente
+* Necessário nodeJS 10+ e npm 5+.
+* Vá até a pasta raíz do projeto e use: npm start
+
+
 ## Tecnologias Utilizadas
 * Angular 9
 * Bootstrap 4
