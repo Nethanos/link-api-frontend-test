@@ -1,27 +1,27 @@
 # LinkapiFrontendTest
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
+Projeto idealizado como teste técnico para a vaga de Desenvolvedor Front-end da Link Api.
 
-## Development server
+## Tecnologias Utilizadas
+* Angular 9
+* Bootstrap 4
+* Node 12.6
+* npm 6.4
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Funções implementadas
+* Criação de perfil e salvamento em local storage
+* Listagem de filmes a partir de API fornecida
+* Favoritar ou desfavoritar filme pela listagem
+* View descritiva de filme selecionado
+* Favoritar ou desfavoritar filme selecionado
 
-## Code scaffolding
+## Observações
+Inicialmente implementei um backend, acreditando que era necessário para salvar o perfil, mas a dúvida foi tirada com a HR Analyst.
+De qualquer modo, deixei o service disponível dentro do projeto, o repositório do back-end está abaixo:
+https://github.com/Nethanos/linkapi-movies-minimal-backend
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Disponível na nuvem também a partir do heroku: 
+https://linkapi-movie-list-backend.herokuapp.com/movies
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Encontrei um pequeno problema na API fornecida; o objeto que representa o filme Pulp Fiction está com o atributo "title" com um espaço a mais.
