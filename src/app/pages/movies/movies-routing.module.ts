@@ -11,10 +11,10 @@ const routes: Routes = [
     canActivate: [ProfileGuardService]
   },
   {
-      path: 'movie/:id',
-      component: MovieViewComponent,
-      canActivate: [ProfileGuardService]
-  }
+    path: 'movie/:id',
+    component: MovieViewComponent,
+    canActivate: [ProfileGuardService]
+  },
 ];
 
 @NgModule({
