@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <label>
                         Age
-                        <input required class="form-control" type="text" formControlName="age" placeholder="How old are you?">
+                        <input required onkeypress="return event.charCode > 47 && event.charCode < 58;" class="form-control" type="text" formControlName="age" placeholder="How old are you?">
                     </label>
                 </div>
 
