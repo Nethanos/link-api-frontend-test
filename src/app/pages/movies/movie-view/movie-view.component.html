@@ -1,36 +1,107 @@
-<a [routerLink]="'/filmes'"> return</a>
 
-<div class="container-fluid" *ngIf="!loadingMovie">
+<div class="container" *ngIf="!loadingMovie">
+
+    <app-header></app-header>
 
     <div class="row">
-        Header
+    <a  class="return-link" [routerLink]="'/filmes'"> Return to list</a>
+
     </div>
-    
+
     <div class="row">
-    
-        <div class="col-sm">
-            <div class="card">
+
+        <div class="col-sm-7">
+            <div class="card movie-card">
                 <div class="card-body">
-                  <h5 class="card-title">{{movie.title}}</h5>
+                    <h5 class="card-title movie-title">{{movie.title}}</h5>
 
-                  <div *ngIf="!isFavorite" (click)="addToFavorites()" class="col-sm-4 favorite-label">Add to Favorites</div>
+                    <div class="row general-movie-info">
+                        <div class="col-sm-4">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                class="bi bi-calendar-event general-info-icon" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm1-3a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z" />
+                                <path fill-rule="evenodd"
+                                    d="M3.5 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zm9 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5z" />
+                                <rect width="2" height="2" x="11" y="6" rx=".5" />
+                            </svg> <span class="general-info-label">{{movie.year}}</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock general-info-icon"
+                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm8-7A8 8 0 1 1 0 8a8 8 0 0 1 16 0z" />
+                                <path fill-rule="evenodd"
+                                    d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
+                            </svg>
+                            <span class="general-info-label">{{movie.runtime}}</span>
 
-                  <div *ngIf="isFavorite" (click)="removeFromFavorites()" class="col-sm-4 favorite-label">Favorited</div>
+                        </div>
+
+                        <div class="col-sm-4">
+
+                            <span class="general-info-label">{{movie.rated}}</span>
+                        </div>
 
 
-                  <h6 class="card-subtitle mb-2 text-muted">{{movie.year}}  {{movie.runtime}} {{movie.rated}}</h6>
-                  <p class="card-text">{{movie.plot}}</p>
-                  <a href="#" class="card-link">Cast</a>
-                  <p *ngFor="let actor of movieCast">{{actor}}</p>
-                  <a href="#" class="card-link">Genre</a>
-                  <p *ngFor="let genre of movieGenre">{{genre}}</p>
-                  <a>Director</a>
-                  <p>{{movie.director}}</p>
+                    </div>
+
+                    <div class="row favorite-area">
+                        <div *ngIf="!isFavorite" (click)="addToFavorites()" class="col-sm-4 ">
+
+                            <button class="btn favorite-heart">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                    class="bi bi-heart-fill favorite-heart-icon" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                </svg>
+                            </button>
+                            <span class="favorite-label">Add to favorites</span>
+
+                        </div>
+
+                        <div *ngIf="isFavorite" (click)="removeFromFavorites()" class="col-sm-4 favorite-label">
+                            <button type="button" class="btn favorited-button">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16"
+                                    class="bi bi-heart-fill add-to-favorite" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                </svg><span class="favorited-label">Favorited</span></button>
+
+                        </div>
+                    </div>
+
+                    <div class="row container">
+                        <p class="card-text plot-area">{{movie.plot}}</p>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4 other-info">
+                            <label>Cast</label>
+                            <p *ngFor="let actor of movieCast">{{actor}}</p>
+                        </div>
+                        <div class="col-sm-4 other-info">
+                            <label>Genre</label>
+                            <p *ngFor="let genre of movieGenre">{{genre}}</p>
+                        </div>
+                        <div class="col-sm-4 other-info">
+                            <label>Director</label>
+                            <p>{{movie.director}}</p>
+                        </div>
+
+                    </div>
+
+
+
                 </div>
-              </div>
+            </div>
         </div>
-        <div class="col-sm">
-            <img  [src]="movie.poster">
+        <div class="col-sm-5">
+            <img class="movie-banner" [src]="movie.poster">
         </div>
     </div>
 </div>

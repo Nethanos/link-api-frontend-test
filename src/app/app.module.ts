@@ -6,14 +6,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { MoviesModule } from './pages/movies/movies.module';
 import { HttpClientModule } from '@angular/common/http';
-import { LinkapiLogoComponent } from './components/linkapi-logo/linkapi-logo.component';
 import { HomeComponent } from './pages/home/home.component';
+import { SharedModule } from './shared/shared-module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LinkapiLogoComponent
     ],
   imports: [
     BrowserModule,
@@ -21,7 +20,10 @@ import { HomeComponent } from './pages/home/home.component';
     ReactiveFormsModule,
     MoviesModule,
     HttpClientModule,
+    SharedModule
     
+  ],
+  exports: [
   ],
   providers: [],
   bootstrap: [AppComponent]

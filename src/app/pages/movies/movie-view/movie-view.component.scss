@@ -1,5 +1,99 @@
-.favorite-label {
-    cursor: pointer;
 
-    border: solid 1px red;
+.movie-banner {
+    max-height: 565px;
+}
+
+.card {
+    border: none;
+}
+
+.movie-card {
+    background: none;
+}
+
+.favorite-heart {
+    border: 3px solid #EB4C3D;
+    background-color: #FCFCFC;
+    color: #EB4C3D;
+    padding: 0px 5px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.return-link {
+    color: #A3B1A2;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+.return-icon {
+    color: #A3B1A2;
+    font-size: 22px;
+}
+
+.favorite-area {
+    padding:15px;
+}
+
+
+.favorite-label {
+    font-weight: 600;
+    color: #637463;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.favorite-heart-icon {
+    font-size: 14px;
+}
+
+.favorited-label {
+    padding-left: 10px;
+}
+
+
+.favorited-button {
+    background-color: red;
+    color: white;
+    font-weight: 700;
+}
+
+.add-to-favorite {
+    font-size: 14px;
+}
+
+.movie-title {
+    font-size: 50px;
+    font-weight: 600;
+    color: #414641
+}
+
+.general-info-label {
+    color: #414641;
+    font-weight: 700;
+    font-size: 28px;
+}
+
+
+.general-info-icon {
+    font-size: 24px;
+    color: #637463;
+    margin-right: 10px;
+}
+
+
+.plot-area {
+    color:#637463;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.other-info label {
+    color:#637463;
+    font-size: 20px;
+}
+
+.other-info p {
+    font-size: 20px;
+    color: #414641;
 }

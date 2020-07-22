@@ -5,6 +5,7 @@ import { MoviesRoutingModule } from './movies-routing.module';
 import { MovieViewComponent } from './movie-view/movie-view.component';
 import { FormsModule } from '@angular/forms';
 import { MovieShowcaseComponent } from '../../components/movie-showcase/movie-showcase.component';
+import { SharedModule } from '../../shared/shared-module';
 
 
 
@@ -15,7 +16,8 @@ import { MovieShowcaseComponent } from '../../components/movie-showcase/movie-sh
   imports: [
     MoviesRoutingModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class MoviesModule { }
