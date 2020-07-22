@@ -9,7 +9,7 @@ import { Profile } from '../models/profile';
 export class ProfileService  {
  
 
-  MY_API_URL = `http://localhost:3001/profiles`;
+  MY_API_URL = `https://linkapi-movie-list-backend.herokuapp.com/profiles`;
 
   constructor(private http: HttpClient) {
   }
