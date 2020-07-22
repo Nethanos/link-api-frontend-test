@@ -10,11 +10,11 @@ import { Movie } from '../../models/movie';
 
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class HomePageComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   constructor(private router: Router, private profileService: ProfileService, private localStorageMdw: LocalStorageMiddleware) { }
 
@@ -37,7 +37,6 @@ export class HomePageComponent implements OnInit {
   saveUser(): void {
     this.profile = {...this.userForm.value};
 
-    if(this.userForm.valid){
       this.profileService.saveProfile(this.profile).subscribe((response) => {
 
         if(response._id) {
@@ -50,12 +49,10 @@ export class HomePageComponent implements OnInit {
   
       })
 
-    }else {
-      console.log("form invalido minha amigo", this.userForm.errors)
     }
 
-  
-
-  }
+    clearForm():void {
+      this.userForm.reset();
+    }
 
 }

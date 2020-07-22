@@ -10,16 +10,16 @@
            <p>It's time to create your profile and customize your experience in <strong>LinkApi Movies!</strong></p>
 
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-6 ">
 
-            <div class="row">
+            <div class="row form-content">
 
             <form id="profile-form" [formGroup]="userForm" (ngSubmit)="saveUser()">
 
                 <div class="form-group">
                     <label>
                         Name
-                        <input class="form-control" type="text" formControlName="name" placeholder="John Doe">
+                        <input required class="form-control" type="text" formControlName="name" placeholder="John Doe">
                     </label>
                 </div>
 
@@ -27,14 +27,14 @@
                 <div class="form-group">
                     <label>
                         Age
-                        <input class="form-control" type="text" formControlName="age" placeholder="Only numbers">
+                        <input required class="form-control" type="text" formControlName="age" placeholder="Only numbers">
                     </label>
                 </div>
 
                 <div class="form-group">
                     <label>
                         Favorite movie
-                        <input class="form-control" type="text" formControlName="favoriteMovie" placeholder="Choose your favorite movie">
+                        <input required class="form-control" type="text" formControlName="favoriteMovie" placeholder="Choose your favorite movie">
                     </label>
                 </div>
 
@@ -48,10 +48,15 @@
                 </div> -->
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Favorite Gente</label>
-                    <select class="form-control" formControlName="favoriteGenre" id="exampleFormControlSelect1">
+                    <select required class="form-control" formControlName="favoriteGenre" id="exampleFormControlSelect1">
                       <option *ngFor="let genre of genreList">{{genre}}</option>
                     </select>
                 </div>
+
+                <button class="btn btn-link btn-cancel" type="button" (click)="clearForm()">Cancel</button> 
+
+                <button class="btn btn-save-profile" [disabled]="!userForm.valid" type="submit">Save profile</button>
+    
 
             </form>
 
@@ -59,12 +64,6 @@
 
         </div>
 
-        <div class="col-sm-3">
-            
-            <button class="btn btn-link btn-cancel">Cancel</button> 
-            <button class="btn btn-save-profile"  form="profile-form" type="submit">Save profile</button>
-
-        </div>
     </div>
 
     <div class="row">

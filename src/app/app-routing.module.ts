@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomePageComponent } from './pages/home-page/home-page.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 const routes: Routes = [
-  {path: "", component: HomePageComponent},
+  {path: "", component: HomeComponent},
   {path: "filmes", loadChildren:() => import('./pages/movies/movies.module').then(m => m.MoviesModule)}
 ];
 
