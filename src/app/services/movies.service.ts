@@ -10,7 +10,7 @@ export class MoviesService  {
  
   API_URL = `https://movies.gateway.linkapi.solutions/v1/movies?apiKey=1719c97e-9d02-449e-aadb-67425bf715c5`;
 
-  MY_API_URL = `http://localhost:3001/movies`;
+  MY_API_URL = `https://linkapi-movie-list-backend.herokuapp.com/movies`;
 
   constructor(private http: HttpClient) {
   }
