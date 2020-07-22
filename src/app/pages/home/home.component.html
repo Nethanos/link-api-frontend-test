@@ -38,17 +38,11 @@
                     </label>
                 </div>
 
-                <!-- <div class="form-group">
-                    <label for="genre-select">
-                        Favorite genre
-                        <select id="genre-select" formControlName="favoriteGenre" class="custom-select" >
-                            <option selected>teste</option>
-                        </select>
-                    </label>  
-                </div> -->
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Favorite Gente</label>
-                    <select required class="form-control" formControlName="favoriteGenre" id="exampleFormControlSelect1">
+                    <label for="genre-select">Favorite Gente</label>
+                    <select required class="form-control" formControlName="favoriteGenre" id="genre-select">
+                        <option [selected]="true" [disabled]="true">Choose your genre</option>
+
                       <option *ngFor="let genre of genreList">{{genre}}</option>
                     </select>
                 </div>
