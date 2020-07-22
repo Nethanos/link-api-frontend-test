@@ -4,7 +4,6 @@ import { Movie } from '../../../models/movie';
 import { finalize } from 'rxjs/operators';
 import { LocalStorageMiddleware } from '../../../middlewares/local-storage-middleware';
 import { FilterTypeEnum } from '../../../helpers/filter-type-enum';
-import { IfStmt } from '@angular/compiler';
 
 
 @Component({

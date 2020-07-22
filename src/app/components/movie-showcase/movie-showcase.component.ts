@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Movie } from '../../../models/movie';
 import { Router } from '@angular/router';
-import { LocalStorageMiddleware } from '../../../middlewares/local-storage-middleware';
+import { LocalStorageMiddleware } from '../../middlewares/local-storage-middleware';
+import { Movie } from '../../models/movie';
 
 @Component({
   selector: 'app-movie-showcase',

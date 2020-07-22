@@ -37,20 +37,24 @@ export class HomePageComponent implements OnInit {
   saveUser(): void {
     this.profile = {...this.userForm.value};
 
-    this.profileService.saveProfile(this.profile).subscribe((response) => {
+    if(this.userForm.valid){
+      this.profileService.saveProfile(this.profile).subscribe((response) => {
 
-      if(response._id) {
-        this.profile = response;
-        this.profile.favoriteMovieList = new Array<Movie>();
-        this.localStorageMdw.setProfile(this.profile);
-        console.log("Perfil criado");
-        this.router.navigate(['/filmes']);
-      }
+        if(response._id) {
+          this.profile = response;
+          this.profile.favoriteMovieList = new Array<Movie>();
+          this.localStorageMdw.setProfile(this.profile);
+          console.log("Perfil criado");
+          this.router.navigate(['/filmes']);
+        }
+  
+      })
 
-     
+    }else {
+      console.log("form invalido minha amigo", this.userForm.errors)
+    }
 
-
-    })
+  
 
   }
 

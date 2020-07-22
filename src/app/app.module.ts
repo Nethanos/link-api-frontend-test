@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { MoviesModule } from './pages/movies/movies.module';
 import { HttpClientModule } from '@angular/common/http';
+import { LinkapiLogoComponent } from './components/linkapi-logo/linkapi-logo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    HomePageComponent,
+    LinkapiLogoComponent
     ],
   imports: [
     BrowserModule,

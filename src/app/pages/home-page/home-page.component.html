@@ -1,49 +1,69 @@
 <main class="container-fluid">
- 
-
-    <div class="row">
-        <div class="col-sm">
-            It's time to create your profile and customize your experience in LinkApi Movies
+    <div class="header">
+        <div class="logo-content">
+            <app-linkapi-logo></app-linkapi-logo>
 
         </div>
-        <div class="col-sm">
-            <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+    </div>
+    <div class="row">
+        <div class="col-sm-6 home-main-text justify-content-md-center">
+           <p>It's time to create your profile and customize your experience in <strong>LinkApi Movies!</strong></p>
+
+        </div>
+        <div class="col-sm-3">
+
+            <div class="row">
+
+            <form id="profile-form" [formGroup]="userForm" (ngSubmit)="saveUser()">
 
                 <div class="form-group">
                     <label>
-                        Nome
-                        <input type="text" formControlName="name" placeholder="John Doe">
+                        Name
+                        <input class="form-control" type="text" formControlName="name" placeholder="John Doe">
                     </label>
                 </div>
 
 
                 <div class="form-group">
                     <label>
-                        Idade
-                        <input type="text" formControlName="age" placeholder="Only numbers">
+                        Age
+                        <input class="form-control" type="text" formControlName="age" placeholder="Only numbers">
                     </label>
                 </div>
 
                 <div class="form-group">
                     <label>
-                        Filme Favorito
-                        <input type="text" formControlName="favoriteMovie" placeholder="Choose your favorite movie">
+                        Favorite movie
+                        <input class="form-control" type="text" formControlName="favoriteMovie" placeholder="Choose your favorite movie">
                     </label>
                 </div>
 
+                <!-- <div class="form-group">
+                    <label for="genre-select">
+                        Favorite genre
+                        <select id="genre-select" formControlName="favoriteGenre" class="custom-select" >
+                            <option selected>teste</option>
+                        </select>
+                    </label>  
+                </div> -->
                 <div class="form-group">
-                    <label>
-                        Gênero Favorito
-                        <select formControlName="favoriteGenre" class="custom-select" >
-                            <option [ngValue]="null" selected disabled>Choose your favorite genre</option>
-                            <option *ngFor="let option of genreList" [value]="option"> {{option}}</option>
-                          </select>
-                    </label>
-                   
-
+                    <label for="exampleFormControlSelect1">Favorite Gente</label>
+                    <select class="form-control" formControlName="favoriteGenre" id="exampleFormControlSelect1">
+                      <option *ngFor="let genre of genreList">{{genre}}</option>
+                    </select>
                 </div>
-                <button>Cancelar</button> <button  [disabled]="!userForm.valid" type="submit">Save profile</button>
+
             </form>
+
+        </div>
+
+        </div>
+
+        <div class="col-sm-3">
+            
+            <button class="btn btn-link btn-cancel">Cancel</button> 
+            <button class="btn btn-save-profile"  form="profile-form" type="submit">Save profile</button>
+
         </div>
     </div>
 
