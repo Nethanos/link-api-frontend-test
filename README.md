@@ -10,6 +10,10 @@ Projeto idealizado como teste técnico para a vaga de Desenvolvedor Front-end da
 * Vá até o browser e use o endereço http://localhost:4200
 
 
+## Disponível em
+https://nethanos.github.io/link-api-frontend-test/
+
+
 ## Tecnologias Utilizadas
 * Angular 9
 * Bootstrap 4
