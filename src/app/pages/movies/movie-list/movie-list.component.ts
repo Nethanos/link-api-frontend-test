@@ -11,7 +11,7 @@ import { FilterTypeEnum } from '../../../helpers/filter-type-enum';
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.scss']
 })
-export class MovieListComponent implements OnInit, AfterViewInit {
+export class MovieListComponent implements AfterViewInit {
 
   constructor(private movieService: MoviesService, private localStorageMdw: LocalStorageMiddleware) { }
 
@@ -27,9 +27,6 @@ export class MovieListComponent implements OnInit, AfterViewInit {
 
   actualFilterType = FilterTypeEnum.FAVORITES;
 
-  ngOnInit(): void {
-  
-  }
 
   ngAfterViewInit(): void {
     this.listAllMovies();
@@ -37,27 +34,29 @@ export class MovieListComponent implements OnInit, AfterViewInit {
 
 
   listAllMovies(): void {
-    this.movieService.getMyMovies().pipe(finalize(() => this.loadingMovies = false) ).subscribe(response => {
-      if(response.length >= 1){
+    this.loadingMovies = true;
+    this.movieService.getMovies().pipe(finalize(() => this.loadingMovies = false)).subscribe(response => {
+      if (response.length >= 1) {
         this.movieList = response;
         this.readonlyMovieList = response;
-      } 
- 
+        this.movieService.movieList = this.readonlyMovieList;
+      }
+
       this.hasMovies = true;
-       
-     })
+
+    })
   }
 
   searchMovie(): void {
 
 
-   const filteredMovieList = this.readonlyMovieList.filter(movie => 
-movie.title.toLocaleLowerCase().includes(this.searchQuery) || movie.actors.toLocaleLowerCase().includes(this.searchQuery) || 
-movie.genre.toLocaleLowerCase().includes(this.searchQuery)
+    const filteredMovieList = this.readonlyMovieList.filter(movie =>
+      movie.title.toLocaleLowerCase().includes(this.searchQuery) || movie.actors.toLocaleLowerCase().includes(this.searchQuery) ||
+      movie.genre.toLocaleLowerCase().includes(this.searchQuery)
     );
 
 
-    if(filteredMovieList.length >= 1){
+    if (filteredMovieList.length >= 1) {
       this.movieList = filteredMovieList;
       this.hasMovies = true;
 
@@ -71,18 +70,18 @@ movie.genre.toLocaleLowerCase().includes(this.searchQuery)
 
   async changeFavoritesFilter() {
 
-    if(this.actualFilterType === FilterTypeEnum.DEFAULT){
-   
+    if (this.actualFilterType === FilterTypeEnum.DEFAULT) {
 
-      const response =  await  this.movieService.getMyMovies().toPromise();
+
+      const response = await this.movieService.getMyMovies().toPromise();
 
       this.movieList = response;
- 
-       this.actualFilterType = FilterTypeEnum.FAVORITES;
-       return; 
-      
-    }if(this.actualFilterType === FilterTypeEnum.FAVORITES) {
-    
+
+      this.actualFilterType = FilterTypeEnum.FAVORITES;
+      return;
+
+    } if (this.actualFilterType === FilterTypeEnum.FAVORITES) {
+
       const profile = this.localStorageMdw.getProfile();
 
       this.movieList = profile.favoriteMovieList;
@@ -92,7 +91,6 @@ movie.genre.toLocaleLowerCase().includes(this.searchQuery)
       return;
     }
 
- 
   }
 
 }

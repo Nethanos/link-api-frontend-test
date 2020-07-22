@@ -3,6 +3,7 @@ import { Movie } from '../../../models/movie';
 import { ActivatedRoute } from '@angular/router';
 import { MoviesService } from '../../../services/movies.service';
 import { LocalStorageMiddleware } from '../../../middlewares/local-storage-middleware';
+import { movieNamePipe } from '../../../pipes/movie-name-pipe';
 
 @Component({
   selector: 'app-movie-view',
@@ -11,7 +12,8 @@ import { LocalStorageMiddleware } from '../../../middlewares/local-storage-middl
 })
 export class MovieViewComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private movieService: MoviesService, private localStorageMdw: LocalStorageMiddleware) { }
+  constructor(private route: ActivatedRoute, private movieService: MoviesService, 
+    private localStorageMdw: LocalStorageMiddleware, private movieNamePipe: movieNamePipe) { }
 
   @Input() movie: Movie;
 
@@ -22,18 +24,20 @@ export class MovieViewComponent implements OnInit {
   movieGenre: Array<string>;
 
   isFavorite: boolean;
-  ngOnInit(): void {
-    const id = this.route.snapshot.params['id'];
+  async ngOnInit(): Promise<void> {
+    const movieName: string = this.route.snapshot.params['id'];
 
-    this.movieService.getMovieById(id).subscribe(response => {
-      this.movie = response;
 
-      this.handleMovieData(this.movie);
+    const movieList = await this.movieService.getMovies().toPromise();
 
+    const foundMovie = movieList.filter(movie => this.movieNamePipe.transform(movieName) === this.movieNamePipe.transform(movie.title))[0];
+
+    if(foundMovie){
+      this.movie = foundMovie;
       this.loadingMovie = !this.loadingMovie;
-      
       this.handleFavoriteState();
-    })
+    }
+
 
   }
 
@@ -41,12 +45,13 @@ export class MovieViewComponent implements OnInit {
   handleFavoriteState() {
     const profile = this.localStorageMdw.getProfile();
 
-     this.isFavorite = profile.favoriteMovieList.some(favoriteMovies => favoriteMovies._id === this.movie._id);
+     this.isFavorite = profile.favoriteMovieList.some(favoriteMovies => 
+      this.movieNamePipe.transform(favoriteMovies.title) === this.movieNamePipe.transform(this.movie.title));
 
   }
 
   removeFromFavorites() {
-    this.localStorageMdw.removeFromFavorites(this.movie._id);
+    this.localStorageMdw.removeFromFavorites(this.movie.title);
     this.handleFavoriteState();
   }
 

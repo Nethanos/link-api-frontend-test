@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Profile } from '../models/profile';
 import { Movie } from '../models/movie';
+import { movieNamePipe } from '../pipes/movie-name-pipe';
 
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Movie } from '../models/movie';
   })
 export class LocalStorageMiddleware {
 
-    constructor() {}
+    constructor(private movieNamePipe: movieNamePipe) {}
 
 
     setProfile(profile: Profile): void {
@@ -24,8 +25,10 @@ export class LocalStorageMiddleware {
     addMovieToFavorites(movieToAdd:Movie){
         const profile = this.getProfile();
         if(profile){
-            const isAlreadyFavorite = profile.favoriteMovieList.some(movie => movie._id === movieToAdd._id);
-            if(isAlreadyFavorite) return;
+            const isAlreadyFavorite = profile.favoriteMovieList.some(movie => 
+                this.movieNamePipe.transform(movie.title)=== this.movieNamePipe.transform(movieToAdd.title));
+            
+                if(isAlreadyFavorite) return;
 
             profile.favoriteMovieList.push(movieToAdd);
 
@@ -33,10 +36,10 @@ export class LocalStorageMiddleware {
         }
     }
 
-    removeFromFavorites(movieIdToPop: string){
+    removeFromFavorites(title: string){
         const profile = this.getProfile();
         if(profile){ 
-            profile.favoriteMovieList = profile.favoriteMovieList.filter(movie => movie._id !== movieIdToPop);
+            profile.favoriteMovieList = profile.favoriteMovieList.filter(movie => this.movieNamePipe.transform(title) !==this.movieNamePipe.transform(movie.title));
             this.setProfile(profile);
         }
     }

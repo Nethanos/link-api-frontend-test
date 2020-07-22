@@ -12,6 +12,9 @@ export class MoviesService  {
 
   MY_API_URL = `https://linkapi-movie-list-backend.herokuapp.com/movies`;
 
+
+  movieList: Array<Movie>;
+
   constructor(private http: HttpClient) {
   }
 
