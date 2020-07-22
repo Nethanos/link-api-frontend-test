@@ -1,17 +1,23 @@
 
-.profile-icon {
-    font-size: 50px;
-    color: #A0AFA0;
-}
+
 
 .filter-area {
     color: #A0AFA0;
 }
 
+.movie-not-found {
+    height: 400px;
+}
 
-.movie-list-header {
-    height: 130px;
-    padding-top: 40px;;
+.no-movie-found-label {
+    color: #A4ADA4;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.reset-filters-label {
+    color: #A0AFA0;
+    font-size: 24px;
 }
 
 .filter-label {

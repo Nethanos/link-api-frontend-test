@@ -7,11 +7,11 @@ import { FilterTypeEnum } from '../../../helpers/filter-type-enum';
 
 
 @Component({
-  selector: 'app-movies',
-  templateUrl: './movies.component.html',
-  styleUrls: ['./movies.component.scss']
+  selector: 'app-movie-list',
+  templateUrl: './movie-list.component.html',
+  styleUrls: ['./movie-list.component.scss']
 })
-export class MoviesComponent implements OnInit, AfterViewInit {
+export class MovieListComponent implements OnInit, AfterViewInit {
 
   constructor(private movieService: MoviesService, private localStorageMdw: LocalStorageMiddleware) { }
 

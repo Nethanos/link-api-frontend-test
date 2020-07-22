@@ -38,8 +38,11 @@
             </div>
         </div>
 
-        <div class="col" *ngIf="!hasMovies">
+        <div class="col-sm-12 text-center" *ngIf="!hasMovies">
+           
             <img class="movie-not-found" src="assets/img/no-movie.svg" alt="Filme não encontrado">
+            <p class="no-movie-found-label">No movies found!</p>
+            <span class="reset-filters-label">Reset your filters to find something.</span>
         </div>
 
 

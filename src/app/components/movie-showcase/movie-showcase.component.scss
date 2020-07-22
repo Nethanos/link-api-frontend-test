@@ -13,9 +13,16 @@
     border: 0px;
 }
 
-.container { position: relative; }
-.container img { display: block; }
-.container .img-favorite-icon { position: absolute; bottom:210px; left: 140px;
+.container { 
+    position: relative; 
+}
+.container img { 
+    display: block; 
+}
+.container .img-favorite-icon { 
+    position: absolute; 
+    bottom:210px; 
+    left: 140px;
     color: white;
     font-size: 30px;
     text-shadow: 2px 2px black;
