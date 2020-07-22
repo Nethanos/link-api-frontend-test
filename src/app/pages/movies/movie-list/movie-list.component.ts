@@ -23,6 +23,8 @@ export class MovieListComponent implements OnInit, AfterViewInit {
 
   hasMovies = true;
 
+  readonlyMovieList: Array<Movie>;
+
   actualFilterType = FilterTypeEnum.FAVORITES;
 
   ngOnInit(): void {
@@ -36,7 +38,10 @@ export class MovieListComponent implements OnInit, AfterViewInit {
 
   listAllMovies(): void {
     this.movieService.getMyMovies().pipe(finalize(() => this.loadingMovies = false) ).subscribe(response => {
-      if(response.length >= 1) this.movieList = response;
+      if(response.length >= 1){
+        this.movieList = response;
+        this.readonlyMovieList = response;
+      } 
  
       this.hasMovies = true;
        
@@ -45,15 +50,22 @@ export class MovieListComponent implements OnInit, AfterViewInit {
 
   searchMovie(): void {
 
-   this.movieService.getMovieByTitle(this.searchQuery).subscribe(response => {
 
-     if(response.length >= 1){
-      this.movieList = response;
+   const filteredMovieList = this.readonlyMovieList.filter(movie => 
+movie.title.toLocaleLowerCase().includes(this.searchQuery) || movie.actors.toLocaleLowerCase().includes(this.searchQuery) || 
+movie.genre.toLocaleLowerCase().includes(this.searchQuery)
+    );
+
+
+    if(filteredMovieList.length >= 1){
+      this.movieList = filteredMovieList;
       this.hasMovies = true;
-     }else {
-       this.hasMovies = false;
-     }
-   });
+
+      return;
+    }
+
+    this.hasMovies = false;
+
   }
 
 

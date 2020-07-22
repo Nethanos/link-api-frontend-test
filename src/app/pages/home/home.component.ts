@@ -37,17 +37,11 @@ export class HomeComponent implements OnInit {
   saveUser(): void {
     this.profile = {...this.userForm.value};
 
-      this.profileService.saveProfile(this.profile).subscribe((response) => {
+    this.profile.favoriteMovieList = new Array<Movie>();
 
-        if(response._id) {
-          this.profile = response;
-          this.profile.favoriteMovieList = new Array<Movie>();
-          this.localStorageMdw.setProfile(this.profile);
-          console.log("Perfil criado");
-          this.router.navigate(['/movies']);
-        }
-  
-      })
+    this.localStorageMdw.setProfile(this.profile);
+
+    this.router.navigate(['/movies']);
 
     }
 
