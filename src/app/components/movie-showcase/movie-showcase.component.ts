@@ -22,7 +22,7 @@ export class MovieShowcaseComponent implements OnInit {
   }
 
   navigateToMovie() {
-    this.router.navigate([`/filme/${this.movie._id}`])
+    this.router.navigate([`/movie/${this.movie._id}`])
   }
 
 

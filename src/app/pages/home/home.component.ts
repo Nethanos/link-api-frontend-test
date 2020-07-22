@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
           this.profile.favoriteMovieList = new Array<Movie>();
           this.localStorageMdw.setProfile(this.profile);
           console.log("Perfil criado");
-          this.router.navigate(['/filmes']);
+          this.router.navigate(['/movies']);
         }
   
       })
