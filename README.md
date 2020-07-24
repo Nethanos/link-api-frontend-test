@@ -2,6 +2,18 @@
 
 Projeto idealizado como teste técnico para a vaga de Desenvolvedor Front-end da Link Api.
 
+
+## Para rodar localmente
+* Necessário nodeJS 10+ e npm 5+.
+* Vá até a pasta raíz do projeto e use: npm install(esse comando instala as dependências do projeto)
+* Após concluir a instalação das dependências com sucesso, rode: npm start;
+* Vá até o browser e use o endereço http://localhost:4200
+
+
+## Disponível em
+https://nethanos.github.io/link-api-frontend-test/
+
+
 ## Tecnologias Utilizadas
 * Angular 9
 * Bootstrap 4
