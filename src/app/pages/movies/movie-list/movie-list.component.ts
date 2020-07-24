@@ -73,7 +73,7 @@ export class MovieListComponent implements AfterViewInit {
     if (this.actualFilterType === FilterTypeEnum.DEFAULT) {
 
 
-      const response = await this.movieService.getMyMovies().toPromise();
+      const response = await this.movieService.getMovies().toPromise();
 
       this.movieList = response;
 
